@@ -66,7 +66,7 @@ class Github_OAuth_Client{
         $apiURL = filter_var($access_token_url, FILTER_VALIDATE_URL)?$access_token_url:$this->apiURLBase.'user?access_token='.$access_token_url;
         $context  = stream_context_create([
           'http' => [
-            'user_agent' => 'Kymobudget GitHub OAuth Login',
+            'user_agent' => 'Kymo budget App',
             'header' => 'Accept: application/json'
           ]
         ]);
