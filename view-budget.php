@@ -145,8 +145,8 @@
                 <th>Items</th>
                 <th>Descriptiond</th>
                 <th>Priority</th>
-                <th>Amount</th>
-                <th>Amount spent</th>
+                <th>Amount Budgeted</th>
+                <th>Amount Expended</th>
                 </tr>
             </thead>
             <tbody>
@@ -158,7 +158,7 @@
                     <td data-value="526"><?php  echo($Items['description']);?></td>
                     <td data-value=""><?php  echo($Items['Priority']);?></td>
                     <td class="amount__budgeted" data-value="<?php  echo($Items['Amount']);?>">₦<?php  echo($Items['Amount']);?></td>
-                    <td contenteditable="true"></td>
+                    <td class="amount__expended" contenteditable="true" >₦ </td>
                 </tr>
                 <?php }while($Items =$result->fetch(PDO::FETCH_ASSOC))?>
             </tbody>
