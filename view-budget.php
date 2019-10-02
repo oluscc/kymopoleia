@@ -79,10 +79,10 @@
         <section class="buget__dashboard">
             <div class="container">
                 <div class="welcome__text">
-                    <p class="welcome__user"><span class="dashboard__username"><?php  echo $_SESSION['lastname'] ; ?></span> Here are your budget items feel free to add and remove.</p>
+                    <p class="welcome__user"><span class="dashboard__username"><?php  echo $_SESSION['lastname'] ;echo "&nbsp;"; ?></span> Here are your budget items feel free to add and remove.</p>
                     <div class="budget__info">
                         <div>
-                                <i style='color: #FD4720;' class="fas fa-wallet fa-2x"></i>
+                            <i style='color: #FD4720;' class="fas fa-wallet fa-2x"></i>
                         </div>
                         <div>
                             <div class="pushLeft">
@@ -92,6 +92,12 @@
                             </div>
 
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+
+                
 
                     </div>
                     <!-- This was the way i implemented on django (JUST A GUIDE!) -->
@@ -140,7 +146,7 @@
             <thead>
                 <tr>
                 <th>Items</th>
-                <th>Descriptiond</th>
+                <th>Description</th>
                 <th>Priority</th>
                 <th>Amount Budgeted</th>
                 <th>Amount Expended</th>
@@ -152,7 +158,7 @@
                     <td>
                         <a href="#"><?php  echo($Items['Item']);?></a>
                     </td>
-                    <td data-value="526"><?php  echo($Items['description']);?></td>
+                    <td width="100px" data-value="526"><?php  echo($Items['description']);?></td>
                     <td data-value=""><?php  echo($Items['Priority']);?></td>
                     <td class="amount__budgeted" data-value="<?php  echo($Items['Amount']);?>">₦<?php  echo($Items['Amount']);?></td>
                     <td class="amount__expended" contenteditable="true" >₦ </td>
@@ -163,8 +169,7 @@
             <input type="hidden" name="hidden" id="hidden" class="form-control" >
             <a type="button" href="addBudgetItems.php" class="btn btn-success" id="add-row"><i class="fa fa-plus"></i> Update/Add Budget
                                 Item</a>
-            </div>
-        </div>
+           
     </div>
     </section>
 
@@ -183,7 +188,7 @@
         var v = r;
             document.getElementById('hidden').val = v;
            console.log(document.getElementById('hidden').val);
-        //    window.location="../budget/view-budget.html?value=" +document.getElementById('hidden').val;
+        window.location="../budget/view-budget.html?value=" +document.getElementById('hidden').val;
     }
  </script>  
    <!-- END SIDEBAR MENU -->
