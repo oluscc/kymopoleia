@@ -143,6 +143,11 @@ main {
     color: #fff;
 }
 
+.error{
+    color:rgb(250, 6, 6);
+    background-color: rgb(250, 6, 6);
+}
+
 .fixed-table-toolbar{
     float: right;
 }
@@ -247,7 +252,7 @@ a{
 
 
 .active {
-    border-bottom: 1px solid #2B4CF2;
+    border-bottom: 1px solid rgb(245, 245, 248);
     width: max-content;
     padding-bottom: 0 !important;
 }

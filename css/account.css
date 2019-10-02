@@ -1,5 +1,7 @@
  body {
      font-family: 'Rubik', sans-serif;
+     margin: 1rem;
+     height: 100vh;
  }
  
  .top-ellipse {
@@ -23,12 +25,12 @@
  }
  
  .login-section {
-     margin: 0;
+     /* margin: 0;
      position: absolute;
-     top: 50%;
+     top: 100%;
      left: 50%;
      -ms-transform: translate(-50%, -50%);
-     transform: translate(-50%, -50%);
+     transform: translate(-50%, -50%); */
  }
  
  form {
@@ -55,9 +57,9 @@
      color: rgba(0, 0, 0, 0.56);
  }
  
- .spacing {
+ /* .spacing {
      margin-top: 250px;
- }
+ } */
  
  .login-btn {
      border-radius: 0;
@@ -100,6 +102,7 @@
      font-weight: 500;
      font-size: 25px;
      line-height: 30px;
+     margin-bottom: 1rem;
  }
  
  .welcome {
@@ -126,7 +129,7 @@
      color: #2B4CF2;
      text-decoration: underline;
  }
- 
+/*  
  .container {
      margin-bottom: 5em;
- }
+ } */

@@ -1,15 +1,12 @@
 <?php
-
 require_once "./PHP/database.php";
 session_start();
 $_SESS['loginError'] =$_SESS['emailError'] =$_SESS['passError'] = "";
 $password = $username="";
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     //user clicked submit button, implement logic
-
 $username = $_POST['username'];
 $password = $_POST['password'];
-
 if(empty($password) && empty($username)){
     $_SESS['loginError'] = "Fill in all fields". "</br>";
    
@@ -33,7 +30,6 @@ else{
     $result = $conn->query($sql);
     
     $user = $result->fetch(PDO::FETCH_ASSOC);
-
     $_SESSION = $user;
 	if($username !== $user['email'] || !password_verify($password, $user['password'])){
         $_SESSION['loginError'] = "Invalid login credentials. Please crosscheck your login details or click on the Sign Up link to create an Account.";

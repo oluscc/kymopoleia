@@ -66,7 +66,7 @@
                                     <p>Manage your expenses and track your spending habits</p>
                                     <p>Set up goals and spend the money you have</p>
                                     <p>saved for a cool trip!</p>
-                                    <button type="submit" class="btn btn-primary sign-up-btn create__account">Get Started   </button>
+                                    <a href="signup.php" type="button" class="btn btn-primary sign-up-btn create__account">Get Started   </a>
     
                             </div>
 
