@@ -119,7 +119,7 @@ if(isset($accessToken)){
     
     // Render Github login button
     //$loginbtn = '<a href="'.htmlspecialchars($loginURL).'"><img src="images/githubmark.png"></a>';
-    $loginbtn = '<span><img src="images/githubmark.png"></span><a href="'.htmlspecialchars($loginURL).'">Login with Github</a>'
+    $loginbtn = '<span><img src="images/githubmark.png"></span><a href="'.htmlspecialchars($loginURL).'">Login with Github</a>';
 }
 ?>
 
