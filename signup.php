@@ -128,6 +128,8 @@ if($user){
                 </div>
                 <button id="submitData" type="submit" class="btn btn-primary login-btn">Create Account</button>
 
+               
+
                 <p class="Already-acc">Already have an account?&nbsp;&nbsp; <a href="login.php"><span>Sign in</span></a></p>
             </form>
             <span class="error"><?php echo $errors; ?></span>

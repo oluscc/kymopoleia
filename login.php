@@ -48,6 +48,13 @@ else{
     }
 }
 ?>
+<?php
+if (isset($_SESSION['userData'])) {
+    // Redirection to application home page.
+    header("location: dashboard.php");
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -94,6 +101,8 @@ else{
             <button type="submit" class="btn btn-primary login-btn">Login</button>
             <button type="button" onclick = "window.location = '<?php echo $loginURL ?>';" class="btn btn-primary login-btn">Login with Google</button>
 
+            <!---github login button-->
+            <span><img src="images/githubmark.png"></span><a href="gitlogin.php">Login with Github</a>
             <p class="Already-acc">New to Kymo Budget?&nbsp;&nbsp;<span><a href="signup.php"> Sign Up</span></a></p>
 
         </form>
