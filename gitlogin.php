@@ -39,11 +39,11 @@ if(isset($accessToken)){
         $output .= '<p>Profile Link :  <a href="'.$userData['link'].'" target="_blank">Click to visit GitHub page</a></p>';
         $output .= '<p>Logout from <a href="logout.php">GitHub</a></p>'; 
         header('location: dashboard.php');
-        exit;
+        exit();
     }else{
         //$output = '<h3 style="color:red">Some problem occurred, please try again.</h3>';
         header("location: dashboard.php");
-		exit;
+		exit();
     }
     
 }elseif(isset($_GET['code'])){
