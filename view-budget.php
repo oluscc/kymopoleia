@@ -77,6 +77,8 @@
 
     <main>
         <?php include "./PHP/sidebar.php"; ?>
+        <div id="main">
+        <button class="openbtn" onclick="openNav()">☰</button>
         <section class="buget__dashboard">
             <div class="container">
                 <div class="welcome__text">
@@ -97,16 +99,11 @@
                 </div>
             </div>
             <div class="container">
-
-                
-
-                    </div>
-                    <!-- This was the way i implemented on django (JUST A GUIDE!) -->
                     <!-- <table
                     id="table"
                     data-toggle="table"
-                    data-height="600"
-                    data-width="600"
+                    data-search="true"
+                    data-show-columns="true"
                     data-pagination="true"
                     data-filter-control="true"
                     data-show-search-clear-button="true">
@@ -129,7 +126,7 @@
                   </tr>
                   {% endfor %}
               </tbody>
-              </table> -->
+              </table> --> -->
 
 
               <table
@@ -168,10 +165,10 @@
             <input type="hidden" name="hidden" id="hidden" class="form-control" >
             <a type="button" href="addBudgetItems.php" class="btn btn-success" id="add-row"><i class="fa fa-plus"></i> Update/Add Budget
                                 Item</a>
-           
-    </div>
-    </section>
+        </div>
+        </section>
 
+    </div>
     </main>
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -198,6 +195,18 @@
             document.getElementById('hidden').val = v;
            console.log(document.getElementById('hidden').val);
        window.location="view-budget.php?value=" +document.getElementById('hidden').val;
+    }
+    function openNav() {
+  document.getElementById("mySidebar").style.width = "300px";
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("main").style.marginLeft = "300px";
+    }
+
+    /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+    function closeNav() {
+    document.getElementById("mySidebar").style.width = "0";
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("main").style.marginLeft = "0";
     }
  </script> 
  
