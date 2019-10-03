@@ -10,7 +10,7 @@
 
 <?php
 require_once "./PHP/database.php";
-echo($_SESSION['usernames']);
+// echo($_SESSION['usernames']);
 function protect_value($value){
  $secured_value = trim(stripslashes(htmlentities($value)));     
  return $secured_value;     
@@ -88,7 +88,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <div class="brandname">
                 <h2 class="header-brandname"><a href="..index.php"><img src="images/kymo.png" alt=""> </a></h2>
             </div>
-            <p class="welcome_user">Hi, <span class="blueText"><?php echo $_SESSION['firstname']    ;  echo $_SESSION['lastname']   ; ?></span></p>
+            <p class="welcome_user">Hi, <span class="blueText"><?php echo $_SESSION['firstname']; echo "&nbsp;" ;echo $_SESSION['lastname']   ; ?></span></p>
             <img class='user-avatar' src="images/user.png" alt="">
             <div class="dropdown">
                     <div class="dropdown-toggler" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -96,6 +96,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     </div>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="dashboard.php"><?php  echo($_SESSION['usernames']); ?></a>
+						<a class="dropdown-item" href="change_password.php">Change Password</a>
                         <a class="dropdown-item" href="logout.php">Sign out</a>
                     </div>
                   </div>
