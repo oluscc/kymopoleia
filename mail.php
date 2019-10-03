@@ -15,7 +15,7 @@
 	$mail->addReplyTo('alisataylorm.m@gmail.com');
 	$mail->isHTML(true);
 	$mail->Subject='KYMOBUDGET Account Verification';
-	$mail->Body    = 'This is the HTML message body <b>in bold!</b>';
+	$mail->Body    = "<center><h4>KYMOBUDGET</h4></center><p>Dear Johu verify your account by clicking here<a href='heroku.com'></a></p>";
 	if (!$mail->send()) {
 		echo "Message could not be sent!";
 		echo 'Mailer Error: ' . $mail->ErrorInfo;
