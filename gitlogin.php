@@ -57,7 +57,7 @@ if(isset($accessToken)){
   
     $_SESSION['access_token'] = $accessToken;
   
-    header('Location: ./');
+    header("Location: ".$_SERVER['PHP_SELF']);
 }else{
     // Generate a random hash and store in the session for security
     $_SESSION['state'] = hash('sha256', microtime(TRUE) . rand() . $_SERVER['REMOTE_ADDR']);
