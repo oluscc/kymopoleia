@@ -1,5 +1,4 @@
-
-  var dropdown = document.getElementsByClassName("dropdown-btn");
+var dropdown = document.getElementsByClassName("dropdown-btn");
   var sidebar = document.getElementsByClassName("dropdown-container");
 var i,hr;
 var pu= window.location.pathname.split("/");
@@ -10,7 +9,7 @@ for (i = 0; i < dropdown.length; i++) {
   dropdown[i].addEventListener("click", function() {
     this.classList.add("active");
     var dropdownContent = this.nextElementSibling;
-
+      console.log(dropdownContent.style.display );
     if (dropdownContent.style.display === "block") {
       dropdownContent.style.display = "none";
     } else {
@@ -20,7 +19,7 @@ for (i = 0; i < dropdown.length; i++) {
 }
   
 $(document).ready(function(){
-    if($('div.sidenav  a').filter(function() {
+    if($('div.sidebar  a').filter(function() {
        r =this.href.split("/");
        rl=this.href.split("/").length;
        hr = r[rl-1];
@@ -29,7 +28,7 @@ $(document).ready(function(){
          return  hr == purl;
         
     }).length>0){
-       $('div.sidenav  a').each(function(i){
+       $('div.sidebar  a').each(function(i){
         r =this.href.split("/");
         rl=this.href.split("/").length;
         hr = r[rl-1];

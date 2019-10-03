@@ -76,96 +76,98 @@
 
     <main>
         <?php include "./PHP/sidebar.php"; ?>
-        <section class="buget__dashboard">
-            <div class="container">
-                <div class="welcome__text">
-                    <p class="welcome__user"><span class="dashboard__username"><?php  echo $_SESSION['lastname'] ; ?></span> Here are your budget items feel free to add and remove.</p>
-                    <div class="budget__info">
-                        <div>
-                                <i style='color: #FD4720;' class="fas fa-wallet fa-2x"></i>
-                        </div>
-                        <div>
-                            <div class="pushLeft">
-                                <p><span class="cBlue">Budget Title:</span> <?php echo $_SESSION['Budget_id']  ; ?></p>
-                                <p style="display: inline; color: #000000;">Total budget Amount</p>
-                                <p ><?php echo($Budget['Amount'])?></p>
+        <div id="main">
+        <button class="openbtn" onclick="openNav()">☰</button>
+            <section class="buget__dashboard">
+                <div class="container">
+                    <div class="welcome__text">
+                        <p class="welcome__user"><span class="dashboard__username"><?php  echo $_SESSION['lastname'] ; ?></span> Here are your budget items feel free to add and remove.</p>
+                        <div class="budget__info">
+                            <div>
+                                    <i style='color: #FD4720;' class="fas fa-wallet fa-2x"></i>
+                            </div>
+                            <div>
+                                <div class="pushLeft">
+                                    <p><span class="cBlue">Budget Title:</span> <?php echo $_SESSION['Budget_id']  ; ?></p>
+                                    <p style="display: inline; color: #000000;">Total budget Amount</p>
+                                    <p ><?php echo($Budget['Amount'])?></p>
+                                </div>
+
                             </div>
 
                         </div>
+                            <!-- This was the way i implemented on django (JUST A GUIDE!) -->
+                            <!-- <table
+                            id="table"
+                            data-toggle="table"
+                            data-height="600"
+                            data-width="600"
+                            data-pagination="true"
+                            data-filter-control="true"
+                            data-show-search-clear-button="true">
+                        <thead>
+                        <tr>
+                            <th data-field="id" data-sortable="true">Budgets</th>
+                            <th data-field="hotel_name" data-sortable="true" data-filter-control="input">Date added</th>
+                            <th data-field="state" data-sortable="true" data-filter-control="select">Time due</th>
+                            <th data-field="state" data-sortable="true" data-filter-control="select">Number of items</th>
+                        </tr>
+                        </thead>
+                        <tbody class="budgets">
+                        {% for key in data %}
+                        <tr class="single_budget" data-name="{{key.budget}}">
+                            <td>{{data.index(key) + 1}}</td>
+                            <td> {{ key.budgets }} </td>
+                            <td> {{ key.date_added }} </td>
+                            <td> {{ key.time_due }} </td>
+                            <td> {{ key.number_of_items }} </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    </table> -->
 
-                    </div>
-                    <!-- This was the way i implemented on django (JUST A GUIDE!) -->
-                    <!-- <table
+
+                    <table
                     id="table"
                     data-toggle="table"
-                    data-height="600"
-                    data-width="600"
+                    data-search="true"
+                    data-show-columns="true"
                     data-pagination="true"
-                    data-filter-control="true"
-                    data-show-search-clear-button="true">
-                <thead>
-                  <tr>
-                    <th data-field="id" data-sortable="true">Budgets</th>
-                    <th data-field="hotel_name" data-sortable="true" data-filter-control="input">Date added</th>
-                    <th data-field="state" data-sortable="true" data-filter-control="select">Time due</th>
-                    <th data-field="state" data-sortable="true" data-filter-control="select">Number of items</th>
-                  </tr>
-                </thead>
-                <tbody class="budgets">
-                  {% for key in data %}
-                  <tr class="single_budget" data-name="{{key.budget}}">
-                      <td>{{data.index(key) + 1}}</td>
-                      <td> {{ key.budgets }} </td>
-                      <td> {{ key.date_added }} </td>
-                      <td> {{ key.time_due }} </td>
-                      <td> {{ key.number_of_items }} </td>
-                  </tr>
-                  {% endfor %}
-              </tbody>
-              </table> -->
-
-
-              <table
-              id="table"
-            data-toggle="table"
-            data-search="true"
-            data-show-columns="true"
-            data-pagination="true"
-            data-pagination-pre-text="Previous"
-            data-pagination-next-text="Next"
-            data-mobile-responsive="true"
-            data-check-on-init="true"
-            >
-    
-            <thead>
-                <tr>
-                <th>Items</th>
-                <th>Descriptiond</th>
-                <th>Priority</th>
-                <th>Amount</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php do{?>
-                <tr id="tr-id-1" class="tr-class-1" data-title="bootstrap table" data-object='{"key": "value"}'>
-                    <td>
-                        <a href="#"><?php  echo($Items['Item']);?></a>
-                    </td>
-                    <td data-value="526"><?php  echo($Items['description']);?></td>
-                    <td data-value=""><?php  echo($Items['Priority']);?></td>
-                    <td class="amount__budgeted" data-value="<?php  echo($Items['Amount']);?>">₦<?php  echo($Items['Amount']);?></td>
-                </tr>
-                <?php }while($Items =$result->fetch(PDO::FETCH_ASSOC))?>
-            </tbody>
-            </table>
-            <input type="hidden" name="hidden" id="hidden" class="form-control" >
-            <a type="button" href="addBudgetItems.php" class="btn btn-success" id="add-row"><i class="fa fa-plus"></i> Update/Add Budget
-                                Item</a>
+                    data-pagination-pre-text="Previous"
+                    data-pagination-next-text="Next"
+                    data-mobile-responsive="true"
+                    data-check-on-init="true"
+                    >
+            
+                    <thead>
+                        <tr>
+                        <th>Items</th>
+                        <th>Descriptiond</th>
+                        <th>Priority</th>
+                        <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php do{?>
+                        <tr id="tr-id-1" class="tr-class-1" data-title="bootstrap table" data-object='{"key": "value"}'>
+                            <td>
+                                <a href="#"><?php  echo($Items['Item']);?></a>
+                            </td>
+                            <td data-value="526"><?php  echo($Items['description']);?></td>
+                            <td data-value=""><?php  echo($Items['Priority']);?></td>
+                            <td class="amount__budgeted" data-value="<?php  echo($Items['Amount']);?>">₦<?php  echo($Items['Amount']);?></td>
+                        </tr>
+                        <?php }while($Items =$result->fetch(PDO::FETCH_ASSOC))?>
+                    </tbody>
+                    </table>
+                    <input type="hidden" name="hidden" id="hidden" class="form-control" >
+                    <a type="button" href="addBudgetItems.php" class="btn btn-success" id="add-row"><i class="fa fa-plus"></i> Update/Add Budget
+                                        Item</a>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
     </div>
-    </section>
-
     </main>
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -192,6 +194,18 @@
             document.getElementById('hidden').val = v;
            console.log(document.getElementById('hidden').val);
        window.location="view-budget.php?value=" +document.getElementById('hidden').val;
+    }
+    function openNav() {
+  document.getElementById("mySidebar").style.width = "300px";
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("main").style.marginLeft = "300px";
+    }
+
+    /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+    function closeNav() {
+    document.getElementById("mySidebar").style.width = "0";
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("main").style.marginLeft = "0";
     }
  </script> 
  
