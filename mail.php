@@ -1,7 +1,7 @@
 <?php
 	require 'phpmailer/PHPMailerAutoload.php';
 	$mail = new PHPMailer;
-	//$mail->isSMTP();
+	$mail->isSMTP();
 	$mail->Host='smtp.gmail.com';
 	$mail->port=587;
 	$mail->SMTPAuth=true;
@@ -15,11 +15,11 @@
 	$mail->addReplyTo('alisataylorm.m@gmail.com');
 	$mail->isHTML(true);
 	$mail->Subject='KYMOBUDGET Account Verification';
-	$mail->body='<h1 align=center>Account Verification</h1><br><h4 align=center>Click verify</h4>';
+	$mail->Body    = 'This is the HTML message body <b>in bold!</b>';
 	if (!$mail->send()) {
 		echo "Message could not be sent!";
+		echo 'Mailer Error: ' . $mail->ErrorInfo;
 	}else{
 		echo "Message has been sent!";
 	}
-
 ?>
