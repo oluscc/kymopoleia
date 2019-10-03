@@ -134,3 +134,10 @@
  .container {
      margin-bottom: 5em;
  } */
+
+ .okmessage {
+    color: #0000FF;
+    margin-bottom: 1em;
+    text-align: center;
+    width: 100%;
+    }

@@ -87,7 +87,7 @@ else{
             </div>
 
             <div class="forgot__pass__link">
-                <a href="#">Forgot Password?</a>
+                <a href="forgotPass.php">Forgot Password?</a>
                 <?php echo $_SESS['loginError']; ?>
             </div>
             <br>
