@@ -59,8 +59,8 @@ nav {
 
 .user-avatar {
     margin-right: 20px;
-    width: 50px;
-    height: 50px;
+    width: 39px;
+    height: 39px;
     background-color: #1032DE;
     color: #FFF;
     font-size: 30px;
@@ -141,6 +141,11 @@ main {
     background-color: #1032DE;
     border: none;
     color: #fff;
+}
+
+.error{
+    color:rgb(250, 6, 6);
+    background-color: rgb(250, 6, 6);
 }
 
 .fixed-table-toolbar{
@@ -247,7 +252,7 @@ a{
 
 
 .active {
-    border-bottom: 1px solid #2B4CF2;
+    border-bottom: 1px solid rgb(245, 245, 248);
     width: max-content;
     padding-bottom: 0 !important;
 }

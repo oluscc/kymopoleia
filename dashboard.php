@@ -91,6 +91,7 @@ if(isset($accessToken)){
     <link rel="stylesheet" href="./css/bootstrap.min.css" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/sidebar.css">
     <script src="https://kit.fontawesome.com/833e0cadb7.js" crossorigin="anonymous"></script>
     <link href="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.css" rel="stylesheet">
     
@@ -112,6 +113,7 @@ if(isset($accessToken)){
                     </div>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="#"><?php  echo($_SESSION['usernames']); ?></a>
+						<a class="dropdown-item" href="change_password.php">Change Password</a>
                         <a class="dropdown-item" href="logout.php">Sign out</a>
 
                         
@@ -124,21 +126,16 @@ if(isset($accessToken)){
 
     <main>
 
-        <section class="sidebar">
+       
 
-            <ul class="sidebar-list">
-                <li > <i class="fa fa-home"></i><a href="#" class="active"> Dashboard</a></li>
-                <li> <i class="fas fa-plus-circle"></i> View Budget Items</li>
-                <li><a href="addBudget.php"><i class="fa fa-plus-circle"></i><a href="addBudget.php"> Add Budget </a></li>
-                <li><a href="#"><i class="fa fa-plus-circle"></i> Add Expenses</a></li>
-            </ul>
-        </section>
+        <?php include "./PHP/sidebar.php"; ?>
+       
 
 
-
+        
         <section class="buget__dashboard">
             <div class="container">
-
+            <br> <?php include "message.php" ?> <br>
                 <div class="welcome__text">
                     <div class="budget__info">
                         <div>
@@ -180,7 +177,7 @@ if(isset($accessToken)){
               </tbody>
               </table> -->
               <a href="addBudget.php" type="button" class="btn btn-success" id="add-row"><i class="fa fa-plus"></i> Create Budget Item</a>
-
+               
               <table
               id="table"
             data-toggle="table"
@@ -232,7 +229,7 @@ if(isset($accessToken)){
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="./js/dashboardNew.js"></script>
-
+    <script src="./js/sidebar.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.js"></script>
@@ -246,5 +243,6 @@ if(isset($accessToken)){
        window.location="view-budget.php?value=" +document.getElementById('hidden').val;
     }
  </script> 
+ 
 </body>
 </html>

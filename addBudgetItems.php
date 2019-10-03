@@ -63,6 +63,7 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/addBudget.css">
+    <link rel="stylesheet" href="./css/sidebar.css">
     <script src="https://kit.fontawesome.com/833e0cadb7.js" crossorigin="anonymous"></script>
     <link href="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.css" rel="stylesheet">
 
@@ -85,6 +86,7 @@
                 </div>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" href="dashboard.php"><?php  echo($_SESSION['usernames']); ?></a>
+					<a class="dropdown-item" href="change_password.php">Change Password</a>
                     <a class="dropdown-item" href="logout.php">Sign out</a>
                 </div>
             </div>
@@ -96,16 +98,10 @@
     <main>
 
 
-        <section class="sidebar">
+    
         
-
-            <ul class="sidebar-list">
-                <li><i class="fas fa-home"></i> Dashboard</li>
-                <li > <i class="fas fa-plus-circle"></i> View Budget Items</li>
-                <li ><i class="fas fa-plus-circle"></i> Add Budget</li>
-                <li class="active"><i class="fas fa-plus-circle"></i>  Add Budget Items</li>
-            </ul>
-        </section>
+        <?php include "./PHP/sidebar.php"; ?>
+      
         <section class="buget__dashboard">
             <div class="container">
                 <br><br>
@@ -191,7 +187,7 @@
                                         <?php $i=$i+1;}while($Item =$result3->fetch(PDO::FETCH_ASSOC));}?>
                                 </tbody>
                             </table>
-                            <button type="submit" id="save" name="save" class="btn budget-save text-center bgBlue">Save</button>  <a  href="view-budget.php?value=" +<?php echo($_SESSION['Budget_id']);?> class="btn budget-save text-center bgBlue">Cancel</a>
+                            <button type="submit" id="save" name="save" class="btn budget-save text-center bgBlue">Save</button><br><br><a  href="view-budget.php?value=" +<?php echo($_SESSION['Budget_id']);?> class="btn budget-save text-center bgBlue">Cancel</a>
                     
                     </form>  
                 </div>
@@ -203,7 +199,7 @@
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="./js/dashboardNew.js"></script>
-
+    <script src="./js/sidebar.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
     </script>

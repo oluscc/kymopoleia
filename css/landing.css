@@ -102,6 +102,18 @@ body{
         align-items: center;
         margin-top: 50px;
     }
+    .navbar{
+        position: fixed;
+    }
+    
+    .nav-item {
+        margin: 0 27px;
+        color: #000;
+    }
+    
+    .nav-link{
+        color: #000 !important;
+    }
 }
 
 @media(max-width:570px){
@@ -114,6 +126,18 @@ body{
     .main-btn{
         width: auto;
         font-size: 12px;
+    }
+    .navbar{
+        position: fixed;
+    }
+    
+    .nav-item {
+        margin: 0 27px;
+        color: #000;
+    }
+    
+    .nav-link{
+        color: #000 !important;
     }
 
     .features{
@@ -141,5 +165,17 @@ body{
 
     .single-about-card{
         margin: 10px 0;  
+    }
+    .navbar{
+        position: fixed;
+    }
+    
+    .nav-item {
+        margin: 0 27px;
+        color: #000;
+    }
+    
+    .nav-link{
+        color: #000 !important;
     }
 }
