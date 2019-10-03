@@ -42,7 +42,7 @@ if(isset($accessToken)){
         exit;
     }else{
         //$output = '<h3 style="color:red">Some problem occurred, please try again.</h3>';
-        header("location: index.php");
+        header("location: dashboard.php");
 		exit;
     }
     
