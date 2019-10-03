@@ -75,6 +75,7 @@
      top: 300px;
      position: fixed;
      left: -55px;
+     z-index: -99;
  }
  
  input {
