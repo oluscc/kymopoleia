@@ -12,9 +12,9 @@ require_once 'Github_OAuth_Client.php';
 /*
  * Configuration and setup GitHub API
  */
-$clientID         = '3eea348eaa04542c858c';
-$clientSecret     = '5eb5f61235d2fff824a37b8140afc720236366fd';
-$redirectURL     = 'https://kymobudget.herokuapp.com/gitlogin.php';
+$clientID         = '9f4b39eaad1c6ce235dc';
+$clientSecret     = '31e43e912cddcaf214a2861741ff7452231e29c2';
+$redirectURL     = 'https://stormy-ridge-97319.herokuapp.com/gitlogin.php';
 
 $gitClient = new Github_OAuth_Client(array(
     'client_id' => $clientID,
