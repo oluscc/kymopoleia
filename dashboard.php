@@ -58,106 +58,101 @@
     </header>
 
     <main>
-
-       
-
-        <?php include "./PHP/sidebar.php"; ?>
-       
-
-
-        
+            <?php include "./PHP/sidebar.php"; ?>
+        <div id="main">
+        <button class="openbtn" onclick="openNav()">☰</button>
         <section class="buget__dashboard">
-            <div class="container">
-            <br> <?php include "message.php" ?> <br>
-                <div class="welcome__text">
-                    <div class="budget__info">
-                        <div>
-                                <p>Total funds budgeted</p>
-                                <p id="total_amount_budgeted"></p>
-    
+                <div class="container">
+                <br> <?php include "message.php" ?> <br>
+                    <div class="welcome__text">
+                        <div class="budget__info">
+                            <div>
+                                    <p>Total funds budgeted</p>
+                                    <p id="total_amount_budgeted"></p>
+        
+                            </div>
+
                         </div>
 
-                    </div>
 
-
-                    <!-- This was the way i implemented on django (JUST A GUIDE!) -->
-                    <!-- <table
-                    id="table"
-                    data-toggle="table"
-                    data-height="600"
-                    data-width="600"
-                    data-pagination="true"
-                    data-filter-control="true"
-                    data-show-search-clear-button="true">
+                        <!-- This was the way i implemented on django (JUST A GUIDE!) -->
+                        <!-- <table
+                        id="table"
+                        data-toggle="table"
+                        data-height="600"
+                        data-width="600"
+                        data-pagination="true"
+                        data-filter-control="true"
+                        data-show-search-clear-button="true">
+                    <thead>
+                    <tr>
+                        <th data-field="id" data-sortable="true">Budgets</th>
+                        <th data-field="hotel_name" data-sortable="true" data-filter-control="input">Date added</th>
+                        <th data-field="state" data-sortable="true" data-filter-control="select">Time due</th>
+                        <th data-field="state" data-sortable="true" data-filter-control="select">Number of items</th>
+                    </tr>
+                    </thead>
+                    <tbody class="budgets">
+                    {% for key in data %}
+                    <tr class="single_budget" data-name="{{key.budget}}">
+                        <td>{{data.index(key) + 1}}</td>
+                        <td> {{ key.budgets }} </td>
+                        <td> {{ key.date_added }} </td>
+                        <td> {{ key.time_due }} </td>
+                        <td> {{ key.number_of_items }} </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                </table> -->
+                <a href="addBudget.php" type="button" class="btn btn-success" id="add-row"><i class="fa fa-plus"></i> Create Budget Item</a>
+                
+                <table
+                id="table"
+                data-toggle="table"
+                data-search="true"
+                data-show-columns="true"
+                data-pagination="true"
+                data-pagination-pre-text="Previous"
+                data-pagination-next-text="Next"
+                data-mobile-responsive="true"
+                data-check-on-init="true"
+                >
+        
                 <thead>
-                  <tr>
-                    <th data-field="id" data-sortable="true">Budgets</th>
-                    <th data-field="hotel_name" data-sortable="true" data-filter-control="input">Date added</th>
-                    <th data-field="state" data-sortable="true" data-filter-control="select">Time due</th>
-                    <th data-field="state" data-sortable="true" data-filter-control="select">Number of items</th>
-                  </tr>
+                    <tr>
+                    <th>Budgets</th>
+                    <th>Date added</th>
+                    <th>Time due</th>
+                    <th>Number of items</th>
+                    <th>Amount Budgeted</th>
+                    <th>Action</th>
+                    </tr>
                 </thead>
-                <tbody class="budgets">
-                  {% for key in data %}
-                  <tr class="single_budget" data-name="{{key.budget}}">
-                      <td>{{data.index(key) + 1}}</td>
-                      <td> {{ key.budgets }} </td>
-                      <td> {{ key.date_added }} </td>
-                      <td> {{ key.time_due }} </td>
-                      <td> {{ key.number_of_items }} </td>
-                  </tr>
-                  {% endfor %}
-              </tbody>
-              </table> -->
-              <a href="addBudget.php" type="button" class="btn btn-success" id="add-row"><i class="fa fa-plus"></i> Create Budget Item</a>
-               
-              <table
-              id="table"
-            data-toggle="table"
-            data-search="true"
-            data-show-columns="true"
-            data-pagination="true"
-            data-pagination-pre-text="Previous"
-            data-pagination-next-text="Next"
-            data-mobile-responsive="true"
-            data-check-on-init="true"
-            >
-    
-            <thead>
-                <tr>
-                <th>Budgets</th>
-                <th>Date added</th>
-                <th>Time due</th>
-                <th>Number of items</th>
-                <th>Amount Budgeted</th>
-                <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-            <?php do{?>
-                <tr id="tr-id-1" onclick="return deleteRow('<?php echo($Budgets['Budget_id']); ?>')"class="tr-class-1" data-title="bootstrap table" data-object='{"key": "value"}'>
-                <td>
-                    <a onclick="return deleteRow('<?php echo($Budgets['Budget_id']); ?>')"><?php  echo($Budgets['Budget_id']);?></a>
-                </td>
-                <td data-value="526"><?php echo($Budgets['startTime']);?></td>
-                <td data-value=""><?php echo($Budgets['endTime']);?></td>
-                <td><?php   $sq = "SELECT * FROM BudgetDetails WHERE Budget_id = '{$Budgets['Budget_id']}' ";
-                    $res = $conn->query($sq);
-                    $Budg =   $res->rowCount();
-                
-                        echo($Budg);?></td>
-                <td class="amount__budgeted" data-value="<?php echo($Budgets['Amount']);?>">₦<?php echo($Budgets['Amount']);?></td>
-                <td><button type="button" onclick="return deleteRow('<?php echo($Budgets['Budget_id']); ?>')" class="btn btn-primary">View budget</button></td>
-                </tr>
-                <?php }while($Budgets =$result->fetch(PDO::FETCH_ASSOC))?>
-                
-            </tbody>
-            </table>
-            <input type="hidden" name="hidden" id="hidden" class="form-control" >
-            </div>
-
-        </section>
-
+                <tbody>
+                <?php do{?>
+                    <tr id="tr-id-1" onclick="return deleteRow('<?php echo($Budgets['Budget_id']); ?>')"class="tr-class-1" data-title="bootstrap table" data-object='{"key": "value"}'>
+                    <td>
+                        <a onclick="return deleteRow('<?php echo($Budgets['Budget_id']); ?>')"><?php  echo($Budgets['Budget_id']);?></a>
+                    </td>
+                    <td data-value="526"><?php echo($Budgets['startTime']);?></td>
+                    <td data-value=""><?php echo($Budgets['endTime']);?></td>
+                    <td><?php   $sq = "SELECT * FROM BudgetDetails WHERE Budget_id = '{$Budgets['Budget_id']}' ";
+                        $res = $conn->query($sq);
+                        $Budg =   $res->rowCount();
+                    
+                            echo($Budg);?></td>
+                    <td class="amount__budgeted" data-value="<?php echo($Budgets['Amount']);?>">₦<?php echo($Budgets['Amount']);?></td>
+                    <td><button type="button" onclick="return deleteRow('<?php echo($Budgets['Budget_id']); ?>')" class="btn btn-primary">View budget</button></td>
+                    </tr>
+                    <?php }while($Budgets =$result->fetch(PDO::FETCH_ASSOC))?>
+                    
+                </tbody>
+                </table>
+                <input type="hidden" name="hidden" id="hidden" class="form-control" >
+                </div>
+            
+            </section>
+        </div>
     </main>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -168,6 +163,18 @@
 <script src="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.js"></script>
 <script src="https://unpkg.com/bootstrap-table@1.15.4/dist/extensions/mobile/bootstrap-table-mobile.min.js"></script>
 <script>
+    function openNav() {
+  document.getElementById("mySidebar").style.width = "250px";
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("main").style.marginLeft = "250px";
+}
+
+/* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+function closeNav() {
+  document.getElementById("mySidebar").style.width = "0";
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("main").style.marginLeft = "0";
+}
   function deleteRow(r) {
         console.log(r);
         var v = r;
