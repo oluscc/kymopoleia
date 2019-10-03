@@ -1,7 +1,7 @@
 <?php
 	require 'phpmailer/PHPMailerAutoload.php';
 	$mail = new PHPMailer;
-	$mail->isSMTP();
+	//$mail->isSMTP();
 	$mail->Host='smtp.gmail.com';
 	$mail->port=587;
 	$mail->SMTPAuth=true;
