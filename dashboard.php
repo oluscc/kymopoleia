@@ -43,6 +43,7 @@
                     </div>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="#"><?php  echo($_SESSION['usernames']); ?></a>
+						<a class="dropdown-item" href="change_password.php">Change Password</a>
                         <a class="dropdown-item" href="logout.php">Sign out</a>
                     </div>
                   </div>
