@@ -43,7 +43,6 @@
     <link rel="stylesheet" href="./css/dashboard.css">
     <script src="https://kit.fontawesome.com/833e0cadb7.js" crossorigin="anonymous"></script>
     <link href="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.css" rel="stylesheet">
-     <link rel="manifest" href="manifest.json">
     
 
     <title>Kymo Budget | Dashboard </title>
@@ -62,6 +61,7 @@
                     </div>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="dashboard.php"><?php  echo($_SESSION['usernames']); ?></a>
+						<a class="dropdown-item" href="change_password.php">Change Password</a>
                         <a class="dropdown-item" href="logout.php">Sign out</a>
                     </div>
                   </div>
@@ -189,8 +189,7 @@
            console.log(document.getElementById('hidden').val);
         window.location="../budget/view-budget.html?value=" +document.getElementById('hidden').val;
     }
- </script> 
-  <script src="js/app.js"></script> 
+ </script>  
    <!-- END SIDEBAR MENU -->
    <script>
   function deleteRow(r) {
