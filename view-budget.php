@@ -53,7 +53,7 @@
             <div class="brandname">
                 <h2 class="header-brandname"><a href="index.php"><img src="images/kymo.png" alt=""> </a></h2>
             </div>
-            <p class="welcome_user"><span class="blueText"><?php echo $_SESSION['firstname']    ;  echo $_SESSION['lastname']   ; ?></span></p>
+            <p class="welcome_user"><span class="blueText"><?php if(isset($_SESSION['firstname'])){echo $_SESSION['firstname'];};  ?><?php if(isset($_SESSION['userData'])){echo $_SESSION['userData']['usernames'];}  ?></span></p>
             <img class='user-avatar' src="images/user.png" alt="">
             <div class="dropdown">
                     <div class="dropdown-toggler" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -80,7 +80,7 @@
         <section class="buget__dashboard">
             <div class="container">
                 <div class="welcome__text">
-                    <p class="welcome__user"><span class="dashboard__username"><?php  echo $_SESSION['lastname'] ;echo "&nbsp;"; ?></span> Here are your budget items feel free to add and remove.</p>
+                    <p class="welcome__user"><span class="dashboard__username"><?php  if(isset($SESSION['lastname'])){echo $_SESSION['lastname']; }   ; echo "&nbsp;"; ?></span> Here are your budget items feel free to add and remove.</p>
                     <div class="budget__info">
                         <div>
                             <i style='color: #FD4720;' class="fas fa-wallet fa-2x"></i>
