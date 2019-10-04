@@ -22,7 +22,7 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
     
     if($checkEmail) {
 
-        header("Location: resetPass.php?email='.$email'");
+        header("Location: resetPass.php?email=$email");
 
         /* $to = $email;
 				$subject = "KymoBudget Password Reset";
