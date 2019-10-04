@@ -39,7 +39,7 @@ else{
         $_SESSION = $user;
         
         
-        if($username === $user['email']||$username === $user['email'] && password_verify($password, $user['password'])){
+        if(password_verify($password, $user['password'])){
             if ($user['status'] == 0) {
                 $_SESS['loginError'] = "You are yet to verify your email. Click <a href='resend.php?id=".$user['user_id']."'>here</a>";
             }
