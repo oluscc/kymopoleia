@@ -1,8 +1,10 @@
 <?php
+session_start();
 require_once('./PHP/database.php');
 // require "database.php";
-$firstname = $username=$lastname = $emailAddress =  "";
+$firstname = $username=$lastname = $email =  "";
 $errors = $firstError = $nameError = $lastError =$emailError =$passError ="";
+unset($_SESSION['success']);
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 //user clicked submit button, implement logic
 $firstname = $_POST['firstname'];
@@ -11,7 +13,7 @@ $email = $_POST['emailAddress'];
 $username = $_POST['username'];
 $password = $_POST['password'];
 $confirmPassword = $_POST['confirmPassword'];
-if(empty($firstname) && empty($lastname) && empty($emailAddress) && empty($username) && empty($password) && empty($confirmPassword)){
+if(empty($firstname) && empty($lastname) && empty($email) && empty($username) && empty($password) && empty($confirmPassword)){
     $errors  = "Fill in all fields". "</br>";
 }else if(!preg_match("/^[a-zA-Z0-9]*$/", $username)){
 	$nameError = "Username should contain only alphanumeric characters". "</br>";
@@ -42,30 +44,37 @@ else if ($password !== $confirmPassword){
 }
 else{
     
-$checkUser = "SELECT * FROM users WHERE usernames = '$username' OR email='$emailAddress'";
-$result = $conn->query($checkUser);
-$user = $result->fetch(PDO::FETCH_ASSOC);
-if($user){
-    $nameError = "Username already exists. Please choose a different username";
-}else{
-    $checkUser2 = "SELECT * FROM users WHERE  email='$emailAddress'";
+    $checkUser = "SELECT * FROM users WHERE usernames = '$username'";
     $result = $conn->query($checkUser);
-    $emailAddress = $result->fetch(PDO::FETCH_ASSOC);
-    if($emailAddress){
-        $emailError = "Email already exists. Please choose a different Email";
+    $user = $result->fetch(PDO::FETCH_ASSOC);
+    if($user){
+        $nameError = "Username already exists. Please choose a different username";
     }
     else{
-    $passHash = password_hash($password, PASSWORD_DEFAULT);
-    $sql = "INSERT INTO users (firstname, lastname, usernames, email, password)
-    VALUES ('$firstname', '$lastname', '$username', '$email', '$passHash')";
-    $done = $conn->exec($sql);
-     $_SESSION['success'] = "Sign up was successful, please use your registration details to login";
-    header('location: login.php');
-    exit();
-} 
+        $checkUser2 = "SELECT * FROM users WHERE  email='$email'";
+        $result2 = $conn->query($checkUser2);
+        $emailChecker = $result2->fetch(PDO::FETCH_ASSOC);
+        if($emailChecker){
+            $emailError = "Email already exists. Please choose a different Email";
+        }
+        else{
+            $token = md5(rand(0,1000) );
+            $status = 0;
+            $passHash = password_hash($password, PASSWORD_DEFAULT);
+            $sql = "INSERT INTO `users` (`firstname`, `lastname`, `usernames`, `email`, `password`, `token`, `status`, `user_id`) VALUES ('$firstname', '$lastname', '$username', '$email', '$passHash', '$token', '$status', NULL)";
+            $done = $conn->query($sql);
+            
+            $_SESSION['success'] = "Sign up was successful. Please kindly verify your account using link sent to your email account registered.";
+            require_once'account-verification-mail.php';
+            header("location: login.php");
+        } 
+    }
+
+    
+    
 }
-   }
 }
+
 ?>
 
     <!DOCTYPE html>
@@ -111,7 +120,7 @@ if($user){
                         <?php echo $nameError; ?></span>
                 </div>
                 <div class="form-group col-md-4 ">
-                    <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="Your email address" id="emailAddress" name="emailAddress"  data-toggle="tooltip" data-placement="bottom" title="Please enter a valid Email Address" value="<?php echo $emailAddress; ?>" 
+                    <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="Your email address" id="emailAddress" name="emailAddress"  data-toggle="tooltip" data-placement="bottom" title="Please enter a valid Email Address" value="<?php echo $email; ?>" 
                     required><span class="error"><?php echo $emailError; ?></span>
                 </div>
 
