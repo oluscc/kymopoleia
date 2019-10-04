@@ -88,7 +88,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <div class="brandname">
                 <h2 class="header-brandname"><a href="..index.php"><img src="images/kymo.png" alt=""> </a></h2>
             </div>
-            <p class="welcome_user">Hi, <span class="blueText"><?php echo $_SESSION['firstname']; echo "&nbsp;" ;echo $_SESSION['lastname']   ; ?></span></p>
+            <p class="welcome_user">Hi, <span class="blueText"><?php if(isset($_SESSION['firstname'])){echo $_SESSION['firstname']; echo "&nbsp;" ;echo $_SESSION['lastname']; }  ; ?><?php if(isset($_SESSION['userData'])){echo $_SESSION['userData']['usernames'];}  ?></span></p>
             <img class='user-avatar' src="images/user.png" alt="">
             <div class="dropdown">
                     <div class="dropdown-toggler" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -109,36 +109,38 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
     <?php include "./PHP/sidebar.php"; ?>
-
-        <section class="add-budget">
-        <div style="height: 100px"></div>
-            <div class="container">
-                <form class="add-budget-form" action='<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>' method="POST">
-                    <h2 class="bgBlue">Add Budget</h2>
-                    <div class="form-row margin-height">
-                        <div class="form-group col-md-6 mTop">
-                            <input type="text" name="budget_name" id="budget_name" class="form-control" placeholder="Enter budget title">
+        <div id="main">
+        <button class="openbtn" onclick="openNav()">☰</button>
+            <section class="add-budget">
+            <div style="height: 100px"></div>
+                <div class="container">
+                    <form class="add-budget-form" action='<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>' method="POST">
+                        <h2 class="bgBlue">Add Budget</h2>
+                        <div class="form-row margin-height">
+                            <div class="form-group col-md-6 mTop">
+                                <input type="text" name="budget_name" id="budget_name" class="form-control" placeholder="Enter budget title">
+                            </div>
+                            <div class="form-group col-md-6 mTop">
+                                <input type="text" name="amount" id="amount" class="form-control" placeholder="Enter amount">
+                            </div>
                         </div>
-                        <div class="form-group col-md-6 mTop">
-                            <input type="text" name="amount" id="amount" class="form-control" placeholder="Enter amount">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <input type="date"  id="startTime" name="startTime" class="form-control" placeholder="Enter start time(dd/m/yy)" value=<?php
+                                $month = date('m');
+                                $day = date('d');
+                                $year = date('Y');
+                                $today = $year . '-' . $month . '-' . $day; echo $today;?>>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="date" name="endTime" id="endTime" class="form-control" placeholder="Enter end time(dd/m/yy)">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <input type="date"  id="startTime" name="startTime" class="form-control" placeholder="Enter start time(dd/m/yy)" value=<?php
-                            $month = date('m');
-                            $day = date('d');
-                            $year = date('Y');
-                            $today = $year . '-' . $month . '-' . $day; echo $today;?>>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <input type="date" name="endTime" id="endTime" class="form-control" placeholder="Enter end time(dd/m/yy)">
-                        </div>
-                    </div>
-                    <button type="submit" class="btn budget-save text-center bgBlue">Create</button>
-                </form>
-            </div>    
-        </section>
+                        <button type="submit" class="btn budget-save text-center bgBlue">Create</button>
+                    </form>
+                </div>    
+            </section>
+        </div>   
     </main>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -153,7 +155,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <script src="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.js"></script>
     <script src="https://unpkg.com/bootstrap-table@1.15.4/dist/extensions/mobile/bootstrap-table-mobile.min.js">
     </script>
+    <script>
+      function openNav() {
+  document.getElementById("mySidebar").style.width = "300px";
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("main").style.marginLeft = "300px";
+}
 
+/* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+function closeNav() {
+  document.getElementById("mySidebar").style.width = "0";
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("main").style.marginLeft = "0";
+}
+    </script>
 </body>
 
 </html>

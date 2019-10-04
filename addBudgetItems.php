@@ -78,7 +78,7 @@
             <div class="brandname">
                 <h2 class="header-brandname"><a href="..index.php"><img src="images/kymo.png" alt=""> </a></h2>
             </div>
-            <p class="welcome_user">Hi, <span class="blueText"><?php echo $_SESSION['firstname']	;  echo $_SESSION['lastname']	; ?></span></p>
+            <p class="welcome_user">Hi, <span class="blueText"><?php if(isset($_SESSION['firstname'])){echo $_SESSION['firstname']	;  echo $_SESSION['lastname']	;} ?><?php if(isset($_SESSION['userData'])){echo $_SESSION['userData']['usernames'];}  ?></span></p>
             <img class='user-avatar' src="images/user.png" alt="">
             <div class="dropdown">
                 <div class="dropdown-toggler" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -96,105 +96,103 @@
     </header>
 
     <main>
-
-
-    
-        
         <?php include "./PHP/sidebar.php"; ?>
-      
-        <section class="buget__dashboard">
-            <div class="container">
-                <br><br>
-                <div>
-                    <div class="budget__headline">
-                        <div>
-                            <h5>Budget Title:</h5>
-                        </div>
-                        <div>
-                            <p><?php echo $_SESSION['Budget_id']; ?></p>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="budget__headline">
-                        <div>
-                            <h5>Amount Allocated:</h5>
-                        </div>
-                        <div>
-                            <p>&#8358; <?php echo $_SESSION['Amount']; ?></p>
-                        </div>
-                    </div>
+        <div id="main">
+            <button class="openbtn" onclick="openNav()">☰</button>
+            <section class="buget__dashboard">
+                <div class="container">
                     <br><br>
-                </div>
-                <div class="welcome__text">
                     <div>
-                        <h4>Add Budget Item</h4>
-                        <p id="total_amount_budgeted"></p>
-                    </div>
-                    <div class="budget__form">
-                        <form id= "set" action="" >
-                            <select id= "item1" name="item1">
-                            <option id="cat" name="cat" value=" " data-value="">..Select category...</option>
-                                <?php do{ ?>
-                                    <option id="cat" name="cat" value="<?php echo ($categories['ItemCategory']); ?>" data-value="<?php echo ($categories['description']); ?>"><?php echo ($categories['ItemCategory']); ?></option>
-                                 <?php }while($categories= $result2->fetch(PDO::FETCH_ASSOC))?>
-                                 <option id="cat" name="cat" value="others" data-value="">others</option>
-                            </select>
-
-                            <input type="text" placeholder="<?php echo $_SESSION['Budget_id']; ?>" disabled>
-
-                            <br>
-                            <select id="priority1" name="priorities1">
-                            <option id="cat" name="cat" value=" " data-value="">..Set priority...</option>
-                                <?php do{ ?>
-                                    <option value="<?php echo ($priorities['percent']); ?>" data-value="<?php echo ($priorities['priority']); ?>"><?php echo ($priorities['priority']); ?></option>
-                                 <?php }while($priorities= $result->fetch(PDO::FETCH_ASSOC))?>
-                            </select>
-                            <input type="text" id="description1" name="description1" placeholder="Description" value="">
-                            <br>
-                        </form>
-                        <button  name ="add-row" id="add-row" class="btn budget-save text-center bgBlue">Add item</button>
-                    </div>
-                </div>   
-                    <div>
-                        <div>
-                            <h3><?php echo $_SESSION['Budget_id']; ?> Budget Items</h3>
+                        <div class="budget__headline">
+                            <div>
+                                <h5>Budget Title:</h5>
+                            </div>
+                            <div>
+                                <p><?php echo $_SESSION['Budget_id']; ?></p>
+                            </div>
                         </div>
+                        <br>
+                        <div class="budget__headline">
+                            <div>
+                                <h5>Amount Allocated:</h5>
+                            </div>
+                            <div>
+                                <p>&#8358; <?php echo $_SESSION['Amount']; ?></p>
+                            </div>
+                        </div>
+                        <br><br>
                     </div>
-                <div class="budget__form">
-                    <form  action='<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>' method="POST">
-                    
-                            <table class="table table-stripped table-bordered" id="invoice">
-                                <thead>
-                                    <tr>
-                                        <th>S/N</th>
-                                        <th>Item</th>
-                                        <th>Description</th>
-                                        <th>Priority</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody> 
-                                        <?php $i=0; if(($result3->rowCount())>0){ do{?>
-                                    <tr class='itemRows'>
-                                        <td ><?php echo $i?></td>
-                                        <td  value="<?php  echo($Item['Item']);?>"><?php  echo($Item['Item']);?><input type="hidden" name="item[]" id="item" value="<?php  echo($Item['Item']);?>"></td>
-                                        <td value="<?php  echo($Item['description']);?>" ><?php  echo($Item['description']);?><input type="hidden" id="description" name="description[]"  value="<?php  echo($Item['description']);?>"></td>
-                                        <td  value="<?php  echo($Item['Priority']);?>" > <?php $sql4 = "SELECT * FROM Priority WHERE percent = '{$Item['Priority']}' ";
-                                        $result4 = $conn->query($sql4);
-                                        $itemp= $result4->fetch(PDO::FETCH_ASSOC); echo($itemp['priority']) ?><input type="hidden" id="prioriy_id" name="priorities[]"  value="<?php  echo($Item['Priority']);?>" ></td>
-                                        <td><button type="button" href="#" type="text" onclick= "return deleteRow(this)"><i class="fa fa-trash"></i></button></td>
-                                    </tr>
-                                        <?php $i=$i+1;}while($Item =$result3->fetch(PDO::FETCH_ASSOC));}?>
-                                </tbody>
-                            </table>
-                            <button type="submit" id="save" name="save" class="btn budget-save text-center bgBlue">Save</button><br><br><a  href="view-budget.php?value=" +<?php echo($_SESSION['Budget_id']);?> class="btn budget-save text-center bgBlue">Cancel</a>
-                    
-                    </form>  
+                    <div class="welcome__text">
+                        <div>
+                            <h4>Add Budget Item</h4>
+                            <p id="total_amount_budgeted"></p>
+                        </div>
+                        <div class="budget__form">
+                            <form id= "set" action="" >
+                                <select id= "item1" name="item1">
+                                <option id="cat" name="cat" value=" " data-value="">..Select category...</option>
+                                    <?php do{ ?>
+                                        <option id="cat" name="cat" value="<?php echo ($categories['ItemCategory']); ?>" data-value="<?php echo ($categories['description']); ?>"><?php echo ($categories['ItemCategory']); ?></option>
+                                    <?php }while($categories= $result2->fetch(PDO::FETCH_ASSOC))?>
+                                    <option id="cat" name="cat" value="others" data-value="">others</option>
+                                </select>
+
+                                <input type="text" placeholder="<?php echo $_SESSION['Budget_id']; ?>" disabled>
+
+                                <br>
+                                <select id="priority1" name="priorities1">
+                                <option id="cat" name="cat" value=" " data-value="">..Set priority...</option>
+                                    <?php do{ ?>
+                                        <option value="<?php echo ($priorities['percent']); ?>" data-value="<?php echo ($priorities['priority']); ?>"><?php echo ($priorities['priority']); ?></option>
+                                    <?php }while($priorities= $result->fetch(PDO::FETCH_ASSOC))?>
+                                </select>
+                                <input type="text" id="description1" name="description1" placeholder="Description" value="">
+                                <br>
+                            </form>
+                            <button  name ="add-row" id="add-row" class="btn budget-save text-center bgBlue">Add item</button>
+                        </div>
+                    </div>   
+                        <div>
+                            <div>
+                                <h3><?php echo $_SESSION['Budget_id']; ?> Budget Items</h3>
+                            </div>
+                        </div>
+                    <div class="budget__form">
+                        <form  action='<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>' method="POST">
+                        
+                                <table class="table table-stripped table-bordered" id="invoice">
+                                    <thead>
+                                        <tr>
+                                            <th>S/N</th>
+                                            <th>Item</th>
+                                            <th>Description</th>
+                                            <th>Priority</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody> 
+                                            <?php $i=0; if(($result3->rowCount())>0){ do{?>
+                                        <tr class='itemRows'>
+                                            <td ><?php echo $i?></td>
+                                            <td  value="<?php  echo($Item['Item']);?>"><?php  echo($Item['Item']);?><input type="hidden" name="item[]" id="item" value="<?php  echo($Item['Item']);?>"></td>
+                                            <td value="<?php  echo($Item['description']);?>" ><?php  echo($Item['description']);?><input type="hidden" id="description" name="description[]"  value="<?php  echo($Item['description']);?>"></td>
+                                            <td  value="<?php  echo($Item['Priority']);?>" > <?php $sql4 = "SELECT * FROM Priority WHERE percent = '{$Item['Priority']}' ";
+                                            $result4 = $conn->query($sql4);
+                                            $itemp= $result4->fetch(PDO::FETCH_ASSOC); echo($itemp['priority']) ?><input type="hidden" id="prioriy_id" name="priorities[]"  value="<?php  echo($Item['Priority']);?>" ></td>
+                                            <td><button type="button" href="#" type="text" onclick= "return deleteRow(this)"><i class="fa fa-trash"></i></button></td>
+                                        </tr>
+                                            <?php $i=$i+1;}while($Item =$result3->fetch(PDO::FETCH_ASSOC));}?>
+                                    </tbody>
+                                </table>
+                                <button type="submit" id="save" name="save" class="btn budget-save text-center bgBlue">Save</button><br><br><a  href="view-budget.php?value=" +<?php echo($_SESSION['Budget_id']);?> class="btn budget-save text-center bgBlue">Cancel</a>
+                        
+                        </form>  
+                    </div>
+
                 </div>
 
-            </div>
-
-        </section>
+            </section>
+        </div>    
     </main>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -210,6 +208,18 @@
     <script src="https://unpkg.com/bootstrap-table@1.15.4/dist/extensions/mobile/bootstrap-table-mobile.min.js">
     </script>
     <script >
+         function openNav() {
+        document.getElementById("mySidebar").style.width = "300px";
+        document.getElementById("mySidebar").style.display = "block";
+        document.getElementById("main").style.marginLeft = "300px";
+        }
+
+        /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+        function closeNav() {
+        document.getElementById("mySidebar").style.width = "0";
+        document.getElementById("mySidebar").style.display = "none";
+        document.getElementById("main").style.marginLeft = "0";
+        }
     var i = <?php echo $i;?>;
     function deleteRow(r) {
     i=i-1;
