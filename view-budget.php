@@ -53,7 +53,7 @@
             <div class="brandname">
                 <h2 class="header-brandname"><a href="index.php"><img src="images/kymo.png" alt=""> </a></h2>
             </div>
-            <p class="welcome_user"><span class="blueText"><?php echo $_SESSION['firstname']    ;  echo $_SESSION['lastname']   ; ?></span></p>
+            <p class="welcome_user"><span class="blueText"><?php if(isset($_SESSION['firstname'])){echo $_SESSION['firstname'];};  ?><?php if(isset($_SESSION['userData'])){echo $_SESSION['userData']['usernames'];}  ?></span></p>
             <img class='user-avatar' src="images/user.png" alt="">
             <div class="dropdown">
                     <div class="dropdown-toggler" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -77,10 +77,12 @@
 
     <main>
         <?php include "./PHP/sidebar.php"; ?>
+        <div id="main">
+        <button class="openbtn" onclick="openNav()">☰</button>
         <section class="buget__dashboard">
             <div class="container">
                 <div class="welcome__text">
-                    <p class="welcome__user"><span class="dashboard__username"><?php  echo $_SESSION['lastname'] ;echo "&nbsp;"; ?></span> Here are your budget items feel free to add and remove.</p>
+                    <p class="welcome__user"><span class="dashboard__username"><?php  if(isset($SESSION['lastname'])){echo $_SESSION['lastname']; }   ; echo "&nbsp;"; ?></span> Here are your budget items feel free to add and remove.</p>
                     <div class="budget__info">
                         <div>
                             <i style='color: #FD4720;' class="fas fa-wallet fa-2x"></i>
@@ -97,16 +99,11 @@
                 </div>
             </div>
             <div class="container">
-
-                
-
-                    </div>
-                    <!-- This was the way i implemented on django (JUST A GUIDE!) -->
                     <!-- <table
                     id="table"
                     data-toggle="table"
-                    data-height="600"
-                    data-width="600"
+                    data-search="true"
+                    data-show-columns="true"
                     data-pagination="true"
                     data-filter-control="true"
                     data-show-search-clear-button="true">
@@ -129,7 +126,7 @@
                   </tr>
                   {% endfor %}
               </tbody>
-              </table> -->
+              </table> --> -->
 
 
               <table
@@ -168,10 +165,10 @@
             <input type="hidden" name="hidden" id="hidden" class="form-control" >
             <a type="button" href="addBudgetItems.php" class="btn btn-success" id="add-row"><i class="fa fa-plus"></i> Update/Add Budget
                                 Item</a>
-           
-    </div>
-    </section>
+        </div>
+        </section>
 
+    </div>
     </main>
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -198,6 +195,18 @@
             document.getElementById('hidden').val = v;
            console.log(document.getElementById('hidden').val);
        window.location="view-budget.php?value=" +document.getElementById('hidden').val;
+    }
+    function openNav() {
+  document.getElementById("mySidebar").style.width = "300px";
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("main").style.marginLeft = "300px";
+    }
+
+    /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+    function closeNav() {
+    document.getElementById("mySidebar").style.width = "0";
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("main").style.marginLeft = "0";
     }
  </script> 
  
