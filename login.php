@@ -43,8 +43,10 @@ else{
             if ($user['status'] == 0) {
                 $_SESS['loginError'] = "You are yet to verify your email. Click <a href='resend.php?id=".$user['user_id']."'>here</a>";
             }
-            header("location: dashboard.php");
-            exit;
+            else{
+                header("location: dashboard.php");
+                exit;
+            }
         }else{
             $_SESS['loginError'] = "Invalid login credentials. Please crosscheck your login details or click on the Sign Up link to create an Account.";
         }
