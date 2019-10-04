@@ -37,10 +37,15 @@ else{
     $_SESSION = $user;
 	if ($user) {
         $_SESSION = $user;
-        if($username === $user['email']||$username === $user['email'] && password_verify($password, $user['password'])){
+        if ($user['status'] == 0) {
+            $_SESS['loginError'] = "You are yet to verify your email.";
+        }
+        else{
+            if($username === $user['email']||$username === $user['email'] && password_verify($password, $user['password'])){
             
-            header("location: dashboard.php");
-            exit;
+                header("location: dashboard.php");
+                exit;
+            }
         }
     }
     else{
