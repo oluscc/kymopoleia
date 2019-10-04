@@ -29,7 +29,7 @@ else if(empty($password)){
 }
 else{
         
-    $sql = "SELECT * FROM r_users WHERE email='$username'";
+    $sql = "SELECT * FROM users WHERE email='$username'";
     
     $result = $conn->query($sql);
     
@@ -108,7 +108,7 @@ if (isset($_SESSION['userData'])) {
             <div class="form-group col-md-4 ">
                 <div class="alert alert-danger"><?php echo $_SESS['loginError']; ?></div>
             </div>
-            <?php } 
+            <?php } unset($_SESSION['loginError']);
             ?>
             <div class="form-group col-md-4 ">
                 <input type="email" name="username" id="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Your email address" value="<?php echo $username; ?>" ><span class="error"><?php echo $_SESS['emailError']; ?></span>

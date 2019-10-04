@@ -3,7 +3,7 @@ session_start();
 require_once('./PHP/database.php');
 	$email = $_GET['email'];
 	$token = $_GET['token'];
-	$sql = "SELECT * FROM r_users WHERE email = '$email' AND token = '$token'";
+	$sql = "SELECT * FROM users WHERE email = '$email' AND token = '$token'";
     $result = $conn->query($sql);
     
     $user = $result->fetch(PDO::FETCH_ASSOC);
@@ -14,7 +14,7 @@ require_once('./PHP/database.php');
 	    }
 	    else{
 	    	if ($user['token'] = $token) {
-	    		$sql2 = "UPDATE `r_users` SET status = 1 WHERE user_id = {$user['user_id']}";
+	    		$sql2 = "UPDATE `users` SET status = 1 WHERE user_id = {$user['user_id']}";
 				$result2 = $conn->query($sql2);
 				if ($result2) {
 					$_SESSION['success'] = "Account verified, proceed to login";

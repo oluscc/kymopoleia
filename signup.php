@@ -44,15 +44,14 @@ else if ($password !== $confirmPassword){
 }
 else{
     
-    $checkUser = "SELECT * FROM r_users WHERE usernames = '$username'";
+    $checkUser = "SELECT * FROM users WHERE usernames = '$username'";
     $result = $conn->query($checkUser);
     $user = $result->fetch(PDO::FETCH_ASSOC);
     if($user){
         $nameError = "Username already exists. Please choose a different username";
-
     }
     else{
-        $checkUser2 = "SELECT * FROM r_users WHERE  email='$email'";
+        $checkUser2 = "SELECT * FROM users WHERE  email='$email'";
         $result2 = $conn->query($checkUser2);
         $emailChecker = $result2->fetch(PDO::FETCH_ASSOC);
         if($emailChecker){
@@ -62,7 +61,7 @@ else{
             $token = md5(rand(0,1000) );
             $status = 0;
             $passHash = password_hash($password, PASSWORD_DEFAULT);
-            $sql = "INSERT INTO `r_users` (`firstname`, `lastname`, `usernames`, `email`, `password`, `token`, `status`, `user_id`) VALUES ('$firstname', '$lastname', '$username', '$email', '$passHash', '$token', '$status', NULL)";
+            $sql = "INSERT INTO `users` (`firstname`, `lastname`, `usernames`, `email`, `password`, `token`, `status`, `user_id`) VALUES ('$firstname', '$lastname', '$username', '$email', '$passHash', '$token', '$status', NULL)";
             $done = $conn->query($sql);
             
             $_SESSION['success'] = "Sign up was successful. Please kindly verify your account using link sent to your email account registered.";
