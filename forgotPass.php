@@ -21,7 +21,10 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
     $checkEmail = $result->fetch(PDO::FETCH_ASSOC);
     
     if($checkEmail) {
-        $to = $email;
+
+        header("Location: resetPass.php?email=$email");
+
+        /* $to = $email;
 				$subject = "KymoBudget Password Reset";
 				$body = "Please click on the link below or paste it into your browser to start the process of changing your password:" . "\n" .
 						"https://kymobudget.herokuapp.com/resetPass.php?email=$email";
@@ -30,10 +33,10 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
 				mail ($to, $subject, $body, $headers);
 				
 				$okmessage = "Please check your email for the link to reset your password.";
-
+        */
 			}else if (!empty($email)){
 			
-				$okmessage = "No active user account exists for this email Address. Please enter an existing user email address.";
+				$okmessage = "No active user account exists for the email address you entered. Please enter an existing user email address.";
 				
 			
 			}
