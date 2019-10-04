@@ -5,7 +5,6 @@ require_once "config.php";
 $loginURL = $gClient->createAuthUrl();
 
 require_once "./PHP/database.php";
-session_start();
 $_SESS['loginError'] =$_SESS['emailError'] =$_SESS['passError'] = "";
 $password = $username="";
 if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -30,22 +29,25 @@ else if(empty($password)){
 }
 else{
         
-    $sql = "SELECT * FROM users WHERE email='$username'";
+    $sql = "SELECT * FROM r_users WHERE email='$username'";
     
     $result = $conn->query($sql);
     
     $user = $result->fetch(PDO::FETCH_ASSOC);
     $_SESSION = $user;
-	if($username !== $user['email'] || !password_verify($password, $user['password'])){
-        $_SESSION['loginError'] = "Invalid login credentials. Please crosscheck your login details or click on the Sign Up link to create an Account.";
-		// echo($_SESSION['loginError']);
-    }elseif($username === $user['email']||$username === $user['email'] && password_verify($password, $user['password'])){
-        $_SESSION['user_id'] = $username;
-        header("location: dashboard.php");
-		exit;
-	}
-      
+	if ($user) {
+        $_SESSION = $user;
+        if($username === $user['email']||$username === $user['email'] && password_verify($password, $user['password'])){
+            
+            header("location: dashboard.php");
+            exit;
+        }
     }
+    else{
+        $_SESS['loginError'] = "Invalid login credentials. Please crosscheck your login details or click on the Sign Up link to create an Account.";
+    }
+      
+}
 }
 ?>
 <?php
@@ -85,8 +87,22 @@ if (isset($_SESSION['userData'])) {
         </div>
         <h3 class=" welcome text-center spacing">Welcome Back!</h3>
         <form class="" action='<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>' method="POST">
+
+            <?php
+             if (isset($_SESSION['success'])) {          ?>
             <div class="form-group col-md-4 ">
-                <input type="email" name="username" id="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Your email address" value="<?php echo $username; ?>" required><span class="error"><?php echo $_SESS['emailError']; ?></span>
+                <div class="alert alert-success"><?php echo $_SESSION['success']; ?></div>
+            </div>
+            <?php } 
+            unset($_SESSION['success']);
+            if (!empty($_SESS['loginError'])) {          ?>
+            <div class="form-group col-md-4 ">
+                <div class="alert alert-danger"><?php echo $_SESS['loginError']; ?></div>
+            </div>
+            <?php } 
+            ?>
+            <div class="form-group col-md-4 ">
+                <input type="email" name="username" id="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Your email address" value="<?php echo $username; ?>" ><span class="error"><?php echo $_SESS['emailError']; ?></span>
             </div>
 
             <div class="form-group col-md-4">
@@ -95,7 +111,7 @@ if (isset($_SESSION['userData'])) {
 
             <div class="forgot__pass__link">
                 <a href="forgotPass.php">Forgot Password?</a>
-                <?php echo $_SESS['loginError']; ?>
+                <?php if(isset($_SESSION['loginError'])){echo $_SESSION['loginError']; } ?>
             </div>
             <br>
             <button type="submit" class="btn btn-primary login-btn">Login</button>
