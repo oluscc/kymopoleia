@@ -16,11 +16,11 @@ if(empty($password) && empty($username)){
    
 }
 // else if(!preg_match("/^[a-zA-Z0-9]*$/", $username)){
-// 	$_SESS['emailError'] = "Username should contain only alphanumeric characters". "</br>";
+//  $_SESS['emailError'] = "Username should contain only alphanumeric characters". "</br>";
     
 // }
 else if(empty($username)){
-	$_SESS['emailError'] = "Username is a required field". "</br>";
+    $_SESS['emailError'] = "Username is a required field". "</br>";
     
 }
 else if(empty($password)){
@@ -35,18 +35,18 @@ else{
     
     $user = $result->fetch(PDO::FETCH_ASSOC);
     $_SESSION = $user;
-	if ($user) {
+    if ($user) {
         $_SESSION = $user;
-        if ($user['status'] == 0) {
-            $_SESS['loginError'] = "You are yet to verify your email.";
-        }
-        else{
-            if($username === $user['email']||$username === $user['email'] && password_verify($password, $user['password'])){
-            
-                header("location: dashboard.php");
-                exit;
+        
+        
+        if($username === $user['email']||$username === $user['email'] && password_verify($password, $user['password'])){
+            if ($user['status'] == 0) {
+                $_SESS['loginError'] = "You are yet to verify your email. Click <a href='resend.php?id=".$user['user_id']."'>here</a>";
             }
+            header("location: dashboard.php");
+            exit;
         }
+    
     }
     else{
         $_SESS['loginError'] = "Invalid login credentials. Please crosscheck your login details or click on the Sign Up link to create an Account.";
