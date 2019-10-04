@@ -45,6 +45,8 @@ else{
             }
             header("location: dashboard.php");
             exit;
+        }else{
+            $_SESS['loginError'] = "Invalid login credentials. Please crosscheck your login details or click on the Sign Up link to create an Account.";
         }
     
     }
