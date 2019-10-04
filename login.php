@@ -41,7 +41,7 @@ else{
         
         if(password_verify($password, $user['password'])){
             if ($user['status'] == 0) {
-                $_SESS['loginError'] = "You are yet to verify your email. Click <a href='resend.php?id=".$user['user_id']."'>here</a>";
+                $_SESS['loginError'] = "You are yet to verify your email. Click <a href='resend.php?id=".$user['user_id']."'>here</a> to resend link to mail.";
             }
             else{
                 header("location: dashboard.php");
