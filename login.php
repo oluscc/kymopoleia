@@ -5,6 +5,9 @@ require_once "config.php";
 $loginURL = $gClient->createAuthUrl();
 
 require_once "./PHP/database.php";
+
+//session_start();
+
 $_SESS['loginError'] =$_SESS['emailError'] =$_SESS['passError'] = "";
 $password = $username="";
 if($_SERVER["REQUEST_METHOD"] == "POST"){
