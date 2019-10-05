@@ -1,0 +1,202 @@
+
+body{
+    font-family: 'Muli', sans-serif;
+   font-style: normal;
+   min-height: 100vh;   
+
+}
+
+.navbar{
+    position: fixed;
+}
+
+.nav-item {
+    margin: 0 27px;
+    color: #000;
+}
+
+.nav-link{
+    color: #000 !important;
+}
+.sign-up-btn  {
+    
+    margin-top: 15px;
+}
+
+.btn-primary{
+    background: #2B4CF2;
+    width: 100px;
+    color: #FFF !important;
+    border-radius: 0;
+    color: #FFF !important; 
+}
+
+
+
+
+.main-btn{
+    background: #040268;
+    color: #FFFFFF;
+    width: 350px;
+    height: 50px;
+    border-radius: 11px;
+}
+
+
+
+.welcome{
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+   
+    /* margin: 150px 0;
+     */
+    
+}
+
+.create__account{
+    width: 18rem;
+    height: 3rem;
+}
+
+.welcome-text h3{
+    font-size: 36px;
+    color: #000;
+}
+
+.intro__text{
+    margin-top: 15px;
+
+}
+
+.intro__text p{
+    margin-bottom: 0;
+}
+
+.get__started__section {
+	text-align: center;
+}
+
+
+.header-brandname a{
+    color: #000;
+    font-size: 20px;
+    
+}
+
+.faq-page{
+	margin:20px 100px;
+	text-align:center;
+}
+
+.row{
+ display:block;
+}
+
+.faq-question a{
+	text-decoration: none;
+    color: #747474;
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+	font-weight:bold;
+}
+
+.divider{
+	border-bottom: 2px solid #ececec;
+}
+
+@media(max-width:761px){
+
+    .welcome-text{
+        font-size: 30px;
+       
+    }
+    .get__started__section {
+        order: 2;
+
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        margin-top: 50px;
+    }
+    .navbar{
+        position: fixed;
+    }
+    
+    .nav-item {
+        margin: 0 27px;
+        color: #000;
+    }
+    
+    .nav-link{
+        color: #000 !important;
+    }
+}
+
+@media(max-width:570px){
+
+
+    .get__started__section{
+        order: 2;
+    }
+  
+    .main-btn{
+        width: auto;
+        font-size: 12px;
+    }
+    .navbar{
+        position: fixed;
+    }
+    
+    .nav-item {
+        margin: 0 27px;
+        color: #000;
+    }
+    
+    .nav-link{
+        color: #000 !important;
+    }
+
+    .features{
+        display: block;
+    }
+    .about-card{
+        display: block;
+    }
+    .single-about-card{
+        margin-bottom: 10px;  
+    }
+    .welcome-text{
+        font-size: 20px
+    }
+
+
+    .app-downloads p {
+        font-weight: bold;
+        font-size: 1rem;
+    }
+}
+
+
+@media(max-width:600px){
+
+    .single-about-card{
+        margin: 10px 0;  
+    }
+    .navbar{
+        position: fixed;
+    }
+    
+    .nav-item {
+        margin: 0 27px;
+        color: #000;
+    }
+    
+    .nav-link{
+        color: #000 !important;
+    }
+}
