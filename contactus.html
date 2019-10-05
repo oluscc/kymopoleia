@@ -1,30 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Contact Form Design</title>
-    <link rel= "stylesheet" type="text/css" href="contactus.css">
-   
-</head>
-<body>
-    <div class= "contact-title">
-        <h1> Say Hello </h1>
-        <h2> We are always ready to serve you!</h2>
-    </div>
-    
-    <div class="contact-form">
-    <form id="contact-form" method="post" action="">
-        <input name="name" type="text" class="form-control" placeholder="Your Name" required>
-        <br>
-        <input name="email" type="email" class="form-control" placeholder="Your Email" required>
-        <br>
-        <input name= "subject" type="text" class="form-control" placeholder="Enter Subject" required> <br>
-        <textarea name="message" class="form-control"  placeholder= "Write message" rows="4" required>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Contact Form Design</title>
+        <link rel="stylesheet" type="text/css" href="contactus.css">
+
+    </head>
+
+    <body>
+        <div class="contact-title">
+            <h1> Say Hello </h1>
+            <h2> We are always ready to serve you!</h2>
+        </div>
+
+        <div class="contact-form">
+            <form id="contact-form" method="POST" action="https://formspree.io/mjnkrgam">
+                <input name="name" type="text" class="form-control" placeholder="Your Name" required>
+                <br>
+                <input name="email" type="email" class="form-control" placeholder="Your Email" required>
+                <br>
+                <input name="subject" type="text" class="form-control" placeholder="Enter Subject" required> <br>
+                <textarea name="message" class="form-control" placeholder="Write message" rows="4" required>
         </textarea> <br>
-        <input type="submit" class="form-control submit" value="SEND MESSAGE">
-    </form>
-    </div>
-</body>
+                <input type="submit" class="form-control submit" value="SEND MESSAGE">
+            </form>
+        </div>
+    </body>
+
 </html>
