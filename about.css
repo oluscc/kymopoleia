@@ -248,3 +248,13 @@ body{
         margin: 10px 0;  
     }
 }
+}
+
+
+main{
+    margin-bottom: 30px;
+}
+
+.btn .btn-primary{
+    margin-left: 15px;
+}
