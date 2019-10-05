@@ -41,6 +41,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./css/sidebar.css">
     <link rel="stylesheet" href="./css/dashboard.css">
+    <link rel="stylesheet" href="./css/popup.css">
     <script src="https://kit.fontawesome.com/833e0cadb7.js" crossorigin="anonymous"></script>
     <link href="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.css" rel="stylesheet">
     
