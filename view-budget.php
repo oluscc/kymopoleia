@@ -40,6 +40,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./css/sidebar.css">
+    <!-- <link rel="stylesheet" href="/css/popup.css"> -->
     <link rel="stylesheet" href="./css/dashboard.css">
     <script src="https://kit.fontawesome.com/833e0cadb7.js" crossorigin="anonymous"></script>
     <link href="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.css" rel="stylesheet">
@@ -146,7 +147,8 @@
                 <th>Items</th>
                 <th>Description</th>
                 <th>Priority</th>
-                <th>Amount</th>
+                <th>Amount Budgeted</th>
+                <th>Amount Expended</th>
                 </tr>
             </thead>
             <tbody>
@@ -158,15 +160,35 @@
                     <td width="100px" data-value="526"><?php  echo($Items['description']);?></td>
                     <td data-value=""><?php  echo($Items['Priority']);?></td>
                     <td class="amount__budgeted" data-value="<?php  echo($Items['Amount']);?>">₦<?php  echo($Items['Amount']);?></td>
+                    <td class="amount__expended" >₦ <?php if($_SERVER["REQUEST_METHOD"] == "POST"){  echo $_POST["expense"];}?></td>
+                    <td><button type="button" onclick="openForm()" class="btn btn-primary">Update Expense</button></td>
                 </tr>
-                <?php }while($Items =$result->fetch(PDO::FETCH_ASSOC))?>
+                <?php 
+                    }while($Items =$result->fetch(PDO::FETCH_ASSOC))
+
+                ?>
             </tbody>
             </table>
             <input type="hidden" name="hidden" id="hidden" class="form-control" >
-            <a type="button" href="addBudgetItems.php" class="btn btn-success" id="add-row"><i class="fa fa-plus"></i> Update/Add Budget
-                                Item</a>
+            <a type="button" href="addBudgetItems.php" class="btn btn-success" id="add-row"><i class="fa fa-plus"></i> Update/Add Budget Item</a>
+            
         </div>
         </section>
+
+        <div class="form-popup" id="updateExpense">
+          <form action="" class="form-container" method="POST">
+            <h1>Expense</h1>
+
+            <label for="expense"><b>Amount Spent</b></label>
+            <input type="text" placeholder="Enter Amount in Naira" name="expense" required>
+
+            <!-- <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" required> -->
+
+            <a href="" ><button type="submit" class="btn">Enter</button></a>
+            <button type="submit" class="btn cancel" onclick="closeForm()">Close</button>
+          </form>
+        </div>
 
     </div>
     </main>
