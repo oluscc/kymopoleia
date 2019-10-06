@@ -11,7 +11,7 @@ require_once('./PHP/database.php');
         /* $sql = "SELECT * FROM users WHERE email = '$email'";
         $result = $conn->query($sql);
         $row = $result->fetch(PDO::FETCH_ASSOC);
-		$user_id = $row["user_id"]*/;		
+		$user_id = $row["user_id"];*/		
 } 		
 
 if (isset($_POST['reset-password'])) {
